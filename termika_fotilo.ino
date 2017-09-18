@@ -17,29 +17,28 @@
  * 
  */
  
-#include <SPI.h>
-#include <TFT.h>
+#include <ESP8266WiFi.h>
+#include "Adafruit_ST7735.h"
 #include "termika_fotilo.h"
 #include "mlx90621.h"
 
-TFT TFTscreen = TFT(CS_, DC_, RST_);    // TFT Konstruktor
+Adafruit_ST7735 TFTscreen = Adafruit_ST7735(CS_, DC_, RST_);    // TFT Konstruktor
 MLX90621 MLXtemp;                       // Objekt fuer Tempsensor erzeugen
 
-void setup() {}     // Arduino Schwachsinn
-
-void loop() 
-{
+void setup() {
 //  Serial.begin(9600);
   StartScreen();
   while (!MLXtemp.init())        // MLX90620 init failed
     delay (100);
-  
-  while (1)   // endlos
-  {
-    OutAmbientTemp();
-    OutTempField();
-    delay(100);         // etwas weniger Stress
-  }
+
+  Serial.println("start loop");
+}
+
+void loop()   // endlos
+{
+  OutAmbientTemp();
+  OutTempField();
+  delay(100);         // etwas weniger Stress
 }
 
 /**
@@ -54,7 +53,8 @@ void StartScreen(void)
   float gradstep;
   char puffer[10];
   
-  TFTscreen.begin ();    // Init Display
+  TFTscreen.initR(INITR_BLACKTAB);
+  TFTscreen.setRotation(1);
   TFTscreen.background (0, 0, 0);     // falsche Implementierung? Angeblich RGB ist aber BGR bei allen Farbangaben
 
   TFTscreen.stroke (0, 0xFF, 0xFF);
@@ -101,7 +101,6 @@ void StartScreen(void)
   gradstep = (MAXTEMP + abs(MINTEMP)) / 103.0;      // Absoultwert von Min
   i = 25 + (uint8_t)(MAXTEMP / gradstep);
   TFTscreen.line (145, i, 150, i);
-
 }
 
 /**
@@ -284,13 +283,4 @@ float FindMaxTemp (float temperatures[])
 
   return temp;
 }
-
-
-
-
-
-
-
-
-
 

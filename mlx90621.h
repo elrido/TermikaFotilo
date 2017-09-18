@@ -3,15 +3,10 @@
 #define __MLX90621__
 
 // pruefe, ob wire.h angepasst wurde:
-#include <Wire.h>
-#include <utility/twi.h>
+#include "Wire.h"
 
 #if BUFFER_LENGTH < 64
   #error "BUFFER_LENGTH in Wire.h nicht auf 64 gesetzt."
-#endif
-
-#if TWI_BUFFER_LENGTH < 64
-  #error "TWI_BUFFER_LENGTH in twi.h nicht auf 64 gesetzt."
 #endif
 
 #include <Arduino.h>

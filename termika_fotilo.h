@@ -1,9 +1,9 @@
 
 
 // Displayanschluesse:
-uint8_t CS_  = 10;
-uint8_t DC_  = 9;
-uint8_t RST_ = 8;  
+#define CS_  15 // HW CS on GPIO15 / D8
+#define DC_  16 // Data or Command pin on GPIO16 / D0
+#define RST_ 0  // not connected, do not trigger reset on begin()
 
 // Farb-Spektrum
 int8_t MINTEMP = -5;
@@ -19,6 +19,4 @@ void OutTempField(void);
 float LinInterpol (float, float, uint8_t, uint8_t, uint8_t);
 float FindMinTemp (float *);
 float FindMaxTemp (float *);
-
-
 
