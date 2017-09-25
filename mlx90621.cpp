@@ -11,22 +11,13 @@
 #include "mlx90621.h"
 
 /**
-  @brief  Konstruktor
-  @param  none
-  @return none
-*/
-MLX90621::MLX90621(void)
-{
-  Wire.begin();     // join i2c bus 
-}
-
-/**
   @brief  Initialisiert den Sensor. Einmal zu Beginn
   @param  none
   @return 0 = Fehler, 1 = OK
 */
 uint8_t MLX90621::init (void)
 {
+  Wire.begin();     // join i2c bus 
 	delay(5);   // erst ab 5ms nach power on reset POR
  
   if (!read_eeprom()) 

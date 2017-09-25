@@ -47,7 +47,6 @@ class MLX90621
     uint8_t read_ir (void);
   
 	public:
-    MLX90621 (void);
 		uint8_t init (void);
     void read_all_irfield (float [16][4]);
     float get_ptat (void);

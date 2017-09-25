@@ -31,7 +31,7 @@ void setup() {
   while (!MLXtemp.init())        // MLX90620 init failed
     delay (100);
 
-  Serial.println("start loop");
+//  Serial.println("start loop");
 }
 
 void loop()   // endlos
@@ -55,13 +55,13 @@ void StartScreen(void)
 
   TFTscreen.initR(INITR_BLACKTAB);
   TFTscreen.setRotation(1);
-  TFTscreen.background (0, 0, 0);     // falsche Implementierung? Angeblich RGB ist aber BGR bei allen Farbangaben
+  TFTscreen.background (0, 0, 0);
 
-  TFTscreen.stroke (0, 0xFF, 0xFF);
-  TFTscreen.fill (50, 100, 20);
+  TFTscreen.stroke (0xFF, 0xFF, 0);
+  TFTscreen.fill (50, 100, 200);
   TFTscreen.rect (0, 0, 159, 20);          // Titelkasten
 
-  TFTscreen.stroke (0,0,255);
+  TFTscreen.stroke (255,0,0);
   TFTscreen.setTextSize (2);
   TFTscreen.text ("Make:",100,3);     // 5x7 Font x2
 
@@ -69,14 +69,14 @@ void StartScreen(void)
   TFTscreen.setTextSize (1);
   TFTscreen.text ("TERMIKA FOTILO",3,7);
 
-  TFTscreen.stroke (0x50, 0x50, 0xFF);
+  TFTscreen.stroke (0xFF, 0x50, 0x50);
   TFTscreen.setTextSize (1);
   TFTscreen.text ("Init...", 0, 112);
   TFTscreen.text ("Please wait", 0, 120);
 
 
   TFTscreen.stroke (127, 127, 127);
-  TFTscreen.fill (100, 0, 0);
+  TFTscreen.fill (0, 0, 100);
   TFTscreen.rect (0, 27, 16+2, 4+2);                    // Original Daten
   TFTscreen.rect (0, 40, 16*ZOOM+2, 4*ZOOM+2);          // Daten xZOOM
   TFTscreen.rect (0, 75, 15*ZOOM+2, 3*ZOOM+2);      // Daten xZOOM interpoliert
@@ -84,7 +84,7 @@ void StartScreen(void)
   for (i=0; i < 103; i++)                 // 103 Farb-Schritte werden angezeigt
   {
     HSVtoRGB (R, G, B, i * (HUEMAX/103.0), 1, .5);        // 320/103  
-    TFTscreen.stroke (B * 255, G * 255, R * 255);
+    TFTscreen.stroke (R * 255, G * 255, B * 255);
     TFTscreen.line (150, i+25, 159, i+25);
   }
 
@@ -119,7 +119,7 @@ void OutAmbientTemp(void)
   TFTscreen.fill (0, 0, 0);
   TFTscreen.rect (0, 112, 70, 128-112);          // Alte Zahl loeschen
 
-  TFTscreen.stroke (0, 0xFF, 0xFF);
+  TFTscreen.stroke (0xFF, 0xFF, 0);
   TFTscreen.setTextSize (2);
 
   dtostrf (t, 6, 1, puffer);
@@ -170,7 +170,7 @@ void HSVtoRGB(float &r, float &g, float &b, float h, float s, float v)
 void OutTempField(void)
 {
   int8_t x, y, xmod, xorg1, xorg2, ymod, yorg1, yorg2; //, xz, yz;
-  char puffer[10];
+//  char puffer[10];
   float temps[16][4];
   float i, i1, i2;
   float hue;
@@ -197,8 +197,8 @@ void OutTempField(void)
     {
       hue = HUEMAX - (temps[x][y] + abs(MINTEMP)) * (HUEMAX / (float)(MAXTEMP + abs(MINTEMP)));
       HSVtoRGB (R, G, B, hue, 1, .5);        
-      TFTscreen.stroke (B * 255, G * 255, R * 255);
-      TFTscreen.fill (B * 255, G * 255, R * 255);
+      TFTscreen.stroke (R * 255, G * 255, B * 255);
+      TFTscreen.fill (R * 255, G * 255, B * 255);
 
       TFTscreen.point (x + 1, y + 28);                                // 1:1 Datenfeld
       TFTscreen.rect (x * ZOOM + 1, y * ZOOM + 41, ZOOM, ZOOM);       // Daten xZOOM
@@ -227,8 +227,8 @@ void OutTempField(void)
 
       hue = HUEMAX - (interpoltemp + abs(MINTEMP)) * (HUEMAX / (float)(MAXTEMP + abs(MINTEMP)));
       HSVtoRGB (R, G, B, hue, 1, .5);        
-      TFTscreen.stroke (B * 255, G * 255, R * 255);
-      TFTscreen.fill (B * 255, G * 255, R * 255);
+      TFTscreen.stroke (R * 255, G * 255, B * 255);
+      TFTscreen.fill (R * 255, G * 255, B * 255);
       TFTscreen.point (x + 1, y + 75 + 1);                    // interpol. Pixel
     }
   }

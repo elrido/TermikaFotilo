@@ -27,7 +27,7 @@ extern "C" {
   #include <inttypes.h>
 }
 
-#include "twi.h"
+#include <twi.h>
 #include "Wire.h"
 
 // Initialize Class Variables //////////////////////////////////////////////////
