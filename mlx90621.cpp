@@ -18,7 +18,7 @@
 uint8_t MLX90621::init (void)
 {
   Wire.begin();     // join i2c bus 
-	delay(5);   // erst ab 5ms nach power on reset POR
+  delay(5);   // erst ab 5ms nach power on reset POR
  
   if (!read_eeprom()) 
     return 0;
@@ -80,7 +80,6 @@ void MLX90621::read_all_irfield (float temperatures[16][4])
   while (test_por ())
   {
     delay (10);
-//    Serial.print ("Neustart");
     init ();
   }
 

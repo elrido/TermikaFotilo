@@ -26,12 +26,9 @@ Adafruit_ST7735 TFTscreen = Adafruit_ST7735(CS_, DC_, RST_);    // TFT Konstrukt
 MLX90621 MLXtemp;                       // Objekt fuer Tempsensor erzeugen
 
 void setup() {
-//  Serial.begin(9600);
   StartScreen();
   while (!MLXtemp.init())        // MLX90620 init failed
     delay (100);
-
-//  Serial.println("start loop");
 }
 
 void loop()   // endlos
@@ -113,8 +110,6 @@ void OutAmbientTemp(void)
   float t = MLXtemp.get_ptat();
   char puffer[10];
 
- // Serial.println (t);
-
   TFTscreen.stroke (0, 0, 0);
   TFTscreen.fill (0, 0, 0);
   TFTscreen.rect (0, 112, 70, 128-112);          // Alte Zahl loeschen
@@ -170,7 +165,6 @@ void HSVtoRGB(float &r, float &g, float &b, float h, float s, float v)
 void OutTempField(void)
 {
   int8_t x, y, xmod, xorg1, xorg2, ymod, yorg1, yorg2; //, xz, yz;
-//  char puffer[10];
   float temps[16][4];
   float i, i1, i2;
   float hue;
@@ -202,13 +196,8 @@ void OutTempField(void)
 
       TFTscreen.point (x + 1, y + 28);                                // 1:1 Datenfeld
       TFTscreen.rect (x * ZOOM + 1, y * ZOOM + 41, ZOOM, ZOOM);       // Daten xZOOM
-
-//      dtostrf (temps[x][y], 6, 1, puffer);    // Ausgabe Zahlenwerte
-//      Serial.print (puffer);
     }
-//    Serial.println();
   }
-//    Serial.println("***");
 
   // Ausgabe interpolierte Werte (Problemloesung durch viel Rechnezeit, da wenig Speicher)
   for(x = 0; x < (ZOOM * 15); x++)

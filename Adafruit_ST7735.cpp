@@ -62,9 +62,6 @@ inline void Adafruit_ST7735::spiwrite(uint8_t c) {
 }
 #elif defined(__AVR__)
 inline void Adafruit_ST7735::spiwrite(uint8_t c) {
-
-  //Serial.println(c, HEX);
-
   if (hwSPI) {
     SPDR = c;
     while(!(SPSR & _BV(SPIF)));
@@ -80,9 +77,6 @@ inline void Adafruit_ST7735::spiwrite(uint8_t c) {
 }
 #elif defined(__SAM3X8E__)
 inline void Adafruit_ST7735::spiwrite(uint8_t c) {
-  
-  //Serial.println(c, HEX);
-  
   if (hwSPI) {
     SPI.transfer(c);
   } else {
@@ -158,7 +152,6 @@ void Adafruit_ST7735::writecommand(uint8_t c) {
   setRS(false);
   setCS(false);
 
-  //Serial.print("C ");
   spiwrite(c);
 
   setCS(true);
@@ -169,7 +162,6 @@ void Adafruit_ST7735::writedata(uint8_t c) {
   setRS(true);
   setCS(false);
     
-  //Serial.print("D ");
   spiwrite(c);
 
   setCS(true);
@@ -179,7 +171,6 @@ void Adafruit_ST7735::writedata16(uint16_t c) {
   setRS(true);
   setCS(false);
     
-  //Serial.print("D ");
   spiwrite16(c);
 
   setCS(true);
@@ -634,114 +625,3 @@ void Adafruit_ST7735::invertDisplay(boolean i) {
   writecommand(i ? ST7735_INVON : ST7735_INVOFF);
 }
 
-
-////////// stuff not actively being used, but kept for posterity
-/*
-
- uint8_t Adafruit_ST7735::spiread(void) {
- uint8_t r = 0;
- if (_sid > 0) {
- r = shiftIn(_sid, _sclk, MSBFIRST);
- } else {
- //SID_DDR &= ~_BV(SID);
- //int8_t i;
- //for (i=7; i>=0; i--) {
- //  SCLK_PORT &= ~_BV(SCLK);
- //  r <<= 1;
- //  r |= (SID_PIN >> SID) & 0x1;
- //  SCLK_PORT |= _BV(SCLK);
- //}
- //SID_DDR |= _BV(SID);
- 
- }
- return r;
- }
- 
- 
- void Adafruit_ST7735::dummyclock(void) {
- 
- if (_sid > 0) {
- digitalWrite(_sclk, LOW);
- digitalWrite(_sclk, HIGH);
- } else {
- // SCLK_PORT &= ~_BV(SCLK);
- //SCLK_PORT |= _BV(SCLK);
- }
- }
- uint8_t Adafruit_ST7735::readdata(void) {
- *portOutputRegister(rsport) |= rspin;
- 
- *portOutputRegister(csport) &= ~ cspin;
- 
- uint8_t r = spiread();
- 
- *portOutputRegister(csport) |= cspin;
- 
- return r;
- 
- } 
- 
- uint8_t Adafruit_ST7735::readcommand8(uint8_t c) {
- digitalWrite(_rs, LOW);
- 
- *portOutputRegister(csport) &= ~ cspin;
- 
- spiwrite(c);
- 
- digitalWrite(_rs, HIGH);
- pinMode(_sid, INPUT); // input!
- digitalWrite(_sid, LOW); // low
- spiread();
- uint8_t r = spiread();
- 
- 
- *portOutputRegister(csport) |= cspin;
- 
- 
- pinMode(_sid, OUTPUT); // back to output
- return r;
- }
- 
- 
- uint16_t Adafruit_ST7735::readcommand16(uint8_t c) {
- digitalWrite(_rs, LOW);
- if (_cs)
- digitalWrite(_cs, LOW);
- 
- spiwrite(c);
- pinMode(_sid, INPUT); // input!
- uint16_t r = spiread();
- r <<= 8;
- r |= spiread();
- if (_cs)
- digitalWrite(_cs, HIGH);
- 
- pinMode(_sid, OUTPUT); // back to output
- return r;
- }
- 
- uint32_t Adafruit_ST7735::readcommand32(uint8_t c) {
- digitalWrite(_rs, LOW);
- if (_cs)
- digitalWrite(_cs, LOW);
- spiwrite(c);
- pinMode(_sid, INPUT); // input!
- 
- dummyclock();
- dummyclock();
- 
- uint32_t r = spiread();
- r <<= 8;
- r |= spiread();
- r <<= 8;
- r |= spiread();
- r <<= 8;
- r |= spiread();
- if (_cs)
- digitalWrite(_cs, HIGH);
- 
- pinMode(_sid, OUTPUT); // back to output
- return r;
- }
- 
- */
