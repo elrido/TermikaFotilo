@@ -4,13 +4,8 @@
  * Andere Typen sind aehnlich aber nutzen andere Berechnung
  * 
  * ACHTUNG!
- * In den Libraries 
- * \arduino\hardware\arduino\avr\libraries\Wire\src\Wire.h und
- * \arduino\hardware\arduino\avr\libraries\Wire\src\utility\twi.h
- * muessen unbedingt die #defines fuer
- * BUFFER_LENGTH und
- * TWI_BUFFER_LENGTH
- * auf den Wert 64 geandert werden. Ansonsten ist der Buffer zum empfangen von I2C-Daten zu klein
+ * In der Library Wire.h muss unbedingt der #defines fuer BUFFER_LENGTH auf den Wert
+ * 64 geandert werden. Ansonsten ist der Buffer zum empfangen von I2C-Daten zu klein
  */
 
 #include "mlx90621.h"
@@ -151,7 +146,7 @@ uint8_t MLX90621::read_eeprom_64 (uint8_t start)
   Wire.write (start);                                // Command: Read the whole EEPROM (start address)
   Wire.endTransmission(0);
   
-  if (!Wire.requestFrom(eeprom_dump_address, 64) ) 
+  if (!Wire.requestFrom(eeprom_dump_address, (uint8_t) 64) ) 
     return 0;      // receive 64 Bytes. Wire.h kann eigentlich nur 32
     
   for (i = start; i < (start + 64); i++)
@@ -229,7 +224,7 @@ int32_t MLX90621::read_config (void)
   Wire.write (0x01);                          // Number of reads
   Wire.endTransmission(0);
  
-  if (!Wire.requestFrom(chip_address, 2))      // receive 2 Bytes
+  if (!Wire.requestFrom(chip_address, (uint8_t) 2))      // receive 2 Bytes
     return -1;
   configreg = Wire.read();                  // LSB
   configreg |= (Wire.read() << 8);          // OR HSB
@@ -264,7 +259,7 @@ int32_t MLX90621::read_ptat (void)
   Wire.write (0x01);                          // Number of reads
   Wire.endTransmission(0);
  
-  if (!Wire.requestFrom(chip_address, 2))      // receive 2 Bytes
+  if (!Wire.requestFrom(chip_address, (uint8_t) 2))      // receive 2 Bytes
     return -1;
   ptat = Wire.read();                 // LSB
   ptat |= Wire.read() << 8;          // OR HSB
@@ -332,7 +327,7 @@ int16_t MLX90621::read_compensation (void)
   Wire.write (0x01);                          // Number of reads
   Wire.endTransmission(0);
  
-  if (!Wire.requestFrom(chip_address, 2))      // receive 2 Bytes
+  if (!Wire.requestFrom(chip_address, (uint8_t) 2))      // receive 2 Bytes
     return -1;
   cp = Wire.read();                 // LSB
 
@@ -355,7 +350,7 @@ uint8_t MLX90621::read_ir (void)
   Wire.write (0x10);                          // Number of reads    // nur erste 32 Bytes statt 128
   Wire.endTransmission(0);
  
-  if (!Wire.requestFrom(chip_address, 32))      // receive 32 Bytes
+  if (!Wire.requestFrom(chip_address, (uint8_t) 32))      // receive 32 Bytes
     return 0;
 
   for (i=0; i < 32; i++)
@@ -369,7 +364,7 @@ uint8_t MLX90621::read_ir (void)
   Wire.write (0x10);                          // Number of reads    // nur erste 32 Bytes statt 128
   Wire.endTransmission(0);
  
-  if (!Wire.requestFrom(chip_address, 32))      // receive 32 Bytes
+  if (!Wire.requestFrom(chip_address, (uint8_t) 32))      // receive 32 Bytes
     return 0;
 
   for (i=0; i < 32; i++)
@@ -383,7 +378,7 @@ uint8_t MLX90621::read_ir (void)
   Wire.write (0x10);                          // Number of reads    // nur erste 32 Bytes statt 128
   Wire.endTransmission(0);
  
-  if (!Wire.requestFrom(chip_address, 32))      // receive 32 Bytes
+  if (!Wire.requestFrom(chip_address, (uint8_t) 32))      // receive 32 Bytes
     return 0;
 
   for (i=0; i < 32; i++)
@@ -397,7 +392,7 @@ uint8_t MLX90621::read_ir (void)
   Wire.write (0x10);                          // Number of reads    // nur erste 32 Bytes statt 128
   Wire.endTransmission(0);
  
-  if (!Wire.requestFrom(chip_address, 32))      // receive 32 Bytes
+  if (!Wire.requestFrom(chip_address, (uint8_t) 32))      // receive 32 Bytes
     return 0;
 
   for (i=0; i < 32; i++)
@@ -408,23 +403,4 @@ uint8_t MLX90621::read_ir (void)
   
   return 1;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
