@@ -59,6 +59,13 @@ front before attaching the battery
 ![Termika Fotilo front with battery and USB charging board attached](https://raw.githubusercontent.com/elrido/TermikaFotilo/master/Termika%20Fotilo%204.jpg)
 front with battery and USB charging board attached
 
+Note that these photos show the reference pin of the sensor in the wrong
+position. The correct orientation of the pin is to the left and not towards the
+top of the sensor. Unfortunately I did not notice this in my tests before
+soldering the sensor on.
+
+![MLX90621 reference pin orientation](https://raw.githubusercontent.com/elrido/TermikaFotilo/master/Reference%20Pin.png)
+
 License
 -------
 
