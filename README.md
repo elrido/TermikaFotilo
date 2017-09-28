@@ -42,29 +42,33 @@ Here below is schema showing how to set this up with a bare, flashed ESP chip.
 When using a NodeMCU, the schema from the Make: article can be applied,
 obviously choosing the appropriate SPI- and I²C-pins of the NodeMCU.
 
-![Termika Fotilo schema using an ESP8266](https://raw.githubusercontent.com/elrido/TermikaFotilo/master/Termika%20Fotilo%20ESP8266.png)
+![Termika Fotilo schema using an ESP8266](https://raw.githubusercontent.com/elrido/TermikaFotilo/master/img/Termika%20Fotilo%20ESP8266.png)
 
 Result
 ------
 
-![Termika Fotilo backside before soldering on the screen](https://raw.githubusercontent.com/elrido/TermikaFotilo/master/Termika%20Fotilo%201.jpg)
-backside before soldering on the screen
+Backside before soldering on the screen:
 
-![Termika Fotilo backside with screen soldered on](https://raw.githubusercontent.com/elrido/TermikaFotilo/master/Termika%20Fotilo%202.jpg)
-backside with screen soldered on
+![Termika Fotilo backside before soldering on the screen](https://raw.githubusercontent.com/elrido/TermikaFotilo/master/img/Termika%20Fotilo%201.jpg)
 
-![Termika Fotilo front before attaching the battery](https://raw.githubusercontent.com/elrido/TermikaFotilo/master/Termika%20Fotilo%203.jpg)
-front before attaching the battery
+Backside with screen soldered on:
 
-![Termika Fotilo front with battery and USB charging board attached](https://raw.githubusercontent.com/elrido/TermikaFotilo/master/Termika%20Fotilo%204.jpg)
-front with battery and USB charging board attached
+![Termika Fotilo backside with screen soldered on](https://raw.githubusercontent.com/elrido/TermikaFotilo/master/img/Termika%20Fotilo%202.jpg)
+
+Front before attaching the battery:
+
+![Termika Fotilo front before attaching the battery](https://raw.githubusercontent.com/elrido/TermikaFotilo/master/img/Termika%20Fotilo%203.jpg)
+
+Front with battery and USB charging board attached:
+
+![Termika Fotilo front with battery and USB charging board attached](https://raw.githubusercontent.com/elrido/TermikaFotilo/master/img/Termika%20Fotilo%204.jpg)
 
 Note that these photos show the reference pin of the sensor in the wrong
 position. The correct orientation of the pin is to the left and not towards the
 top of the sensor. Unfortunately I did not notice this in my tests before
 soldering the sensor on.
 
-![MLX90621 reference pin orientation](https://raw.githubusercontent.com/elrido/TermikaFotilo/master/Reference%20Pin.png)
+![MLX90621 reference pin orientation](https://raw.githubusercontent.com/elrido/TermikaFotilo/master/img/Reference%20Pin.png)
 
 License
 -------
