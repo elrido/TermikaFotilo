@@ -35,9 +35,12 @@ do have to add a few components for getting some pins to the right level on boot
 for voltage stability and of course the whole WiFi part of the ESP goes completely
 unused.
 
-I'll include ESP specific schemas on how to set this up with a bare, pre-flashed
-ESP chip. When using a NodeMCU, the schema from the Make: article can be applied,
-obviously choosing the appropriate SPI- and I²C-pins for the NodeMCU.
+Here below is schema showing how to set this up with a bare, flashed ESP chip.
+When using a NodeMCU, the schema from the Make: article can be applied,
+obviously choosing the appropriate SPI- and I²C-pins of the NodeMCU.
+
+![Termika Fotilo schema using an ESP8266](https://raw.githubusercontent.com/elrido/TermikaFotilo/master/Termika%20Fotilo%20ESP8266.png)
+
 
 License
 -------
