@@ -35,12 +35,29 @@ do have to add a few components for getting some pins to the right level on boot
 for voltage stability and of course the whole WiFi part of the ESP goes completely
 unused.
 
+Schema
+------
+
 Here below is schema showing how to set this up with a bare, flashed ESP chip.
 When using a NodeMCU, the schema from the Make: article can be applied,
 obviously choosing the appropriate SPI- and I²C-pins of the NodeMCU.
 
 ![Termika Fotilo schema using an ESP8266](https://raw.githubusercontent.com/elrido/TermikaFotilo/master/Termika%20Fotilo%20ESP8266.png)
 
+Result
+------
+
+![Termika Fotilo backside before soldering on the screen](https://raw.githubusercontent.com/elrido/TermikaFotilo/master/Termika%20Fotilo%201.jpg)
+backside before soldering on the screen
+
+![Termika Fotilo backside with screen soldered on](https://raw.githubusercontent.com/elrido/TermikaFotilo/master/Termika%20Fotilo%202.jpg)
+backside with screen soldered on
+
+![Termika Fotilo front before attaching the battery](https://raw.githubusercontent.com/elrido/TermikaFotilo/master/Termika%20Fotilo%203.jpg)
+front before attaching the battery
+
+![Termika Fotilo front with battery and USB charging board attached](https://raw.githubusercontent.com/elrido/TermikaFotilo/master/Termika%20Fotilo%204.jpg)
+front with battery and USB charging board attached
 
 License
 -------
